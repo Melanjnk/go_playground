@@ -11,6 +11,10 @@ type Item struct {
 	Qty   int
 }
 
+func (i Item) CalculateTotal() float64 {
+	return i.Price * float64(i.Qty)
+}
+
 func main() {
 	// Shopping cart represented as a map with item names as keys
 	cart := map[string]Item{
@@ -23,7 +27,7 @@ func main() {
 
 	fmt.Println("Shopping Cart:")
 	for _, item := range cart {
-		itemTotal := item.Price * float64(item.Qty)
+		itemTotal := item.CalculateTotal()
 		totalCost += itemTotal
 		fmt.Printf("%s - %d pcs - $%.2f each - Total: $%.2f\n", item.Name, item.Qty, item.Price, itemTotal)
 	}
